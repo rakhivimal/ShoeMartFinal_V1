@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<style>
+body{
+padding:50px;
+}
+</style>
+<body>
+
+<h1>Add new stock</h1>
+<fieldset style="width:700px;">
+<legend>Shoe Details</legend>
+<form action="addshoe.php" method="POST" enctype="multipart/form-data">
+<br>
+Model Name:<br>
+<input type="text" name="modelname" value="">
+<br>
+Model Type:<br>
+<select name="type">
+  <option value="casual">Casual</option>
+  <option value="running">Running</option>
+  <option value="formal">Formal</option>
+  <option value="sports">Sports</option>
+</select>
+
+<br>
+size:<br>
+<input type="text" name="size" value="" size = "6">
+<br>
+Category:<br>
+<select name="category">
+  <option value="men">Men</option>
+  <option value="women">Women</option>
+  <option value="children">Children</option>
+</select>
+
+<br>
+price:<br>
+<input type="text" name="price" value="" size = "6">
+<br>
+Quantity:<br>
+<input type="text" name="quantity" value="" size = "6">
+<br><br>
+<!--<fieldset>-->
+Image Name:<br>
+<input type="text" name="path" value="">
+<br><br>
+
+Brand Name:<br>
+<select name="brandId">
+  <option value="1">Adidas</option>
+  <option value="2">Nike</option>
+  <option value="3">New-Balance</option>
+  <option value="4">Sketchers</option>
+  <option value="5">Puma</option>
+  <option value="6">Ralph-Lauren</option>
+  <option value="7">Asics</option>
+  <option value="8">Sporto</option>
+  <option value="9">Magnum</option>
+</select>
+
+<br><br>
+
+</fieldset><br><br>
+<input type="submit" name ="submit" value="submit">
+</form>
+</fieldset>
+</body>
+</html>
