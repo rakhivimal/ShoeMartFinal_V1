@@ -8,3 +8,64 @@ width:200px;
 height:800px;
 float:right;
 }
+
+
+table.imagetable {
+  font-family: verdana,arial,sans-serif;
+  font-size:11px;
+  color:#333333;
+  width: 60%;
+  border-width: 1px;
+  margin-top: 1cm;
+  border-color: #999999;
+  border-collapse: collapse;
+}
+
+table.imagetable th {
+  background:#b5cfd2 url('cell-blue.jpg');
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #999999;
+}
+table.imagetable td {
+  background:#dcddc0 url('cell-grey.jpg');
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #999999;
+}
+
+.button_style{
+  background-color:black;
+  color:white;
+  height: 90px;
+  margin-bottom: 1cm;
+  margin-left: 470px;
+}
+
+label_v1{
+  margin-top: 1cm;
+  font: 23px Arial, Helvetica, sans-serif;
+  color:black;
+  font-weight: bold;
+  text-align: center;
+  padding: 0px 0px 60px 250px;
+}
+
+label_v2{
+  margin-top: 1cm;
+  font: 13px Arial, Helvetica, sans-serif;
+  color:black;
+  font-weight: bold;
+  text-align: center;
+  padding: 0px 0px 60px 250px;
+}
+
+label_total{
+  font: 18px Arial, Helvetica, sans-serif;
+  color:black;
+  font-weight: bold;
+  text-align: center;
+  padding: 0px 0px 0px 470px;
+}
