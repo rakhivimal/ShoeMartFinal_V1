@@ -13,8 +13,10 @@
       if(!empty($_GET["action"])) {
         switch($_GET["action"]) {
           case "add":
-          $dataArray=array($_POST["model_id"], $_POST["model_name"], $_POST["price"],$_POST["quantity"]);
-          addToCart($dataArray);
+          if(isset($_POST["model_id"])){
+            $dataArray=array($_POST["model_id"], $_POST["model_name"], $_POST["price"],$_POST["quantity"]);
+            addToCart($dataArray);
+          }
           break;
           case "remove":
           removeFromCart($_GET["model_id"]);
@@ -95,11 +97,7 @@
 
       ?>
       <div class ="Center-Nav" style="text-align: center;width:1250px">
-        <p>
-          <b><u>View cart</u></b> <a href="<?=$project_root?>/cart_items.php">
-            <img src="assets/logo/cart.jpg" alt="Mountain View" style="width:60px;height:60px">
-          </a>
-        </p>
+
 
         <?php
         if (isset($result)) {
@@ -164,4 +162,3 @@
           </div>
         </body>
         </html>
-        

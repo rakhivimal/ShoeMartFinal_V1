@@ -26,6 +26,15 @@
           <li><a href="<?=$project_root?>/search.php?search=fresh&category=children">Children</a></li>
           <li><a href="<?=$project_root?>/cart_items.php">View Cart</a></li>
       </ul>
+      <?php
+        if(!empty($_SESSION["cart_item"])) {
+      ?>
+      <p>
+        <b><a href="<?=$project_root?>/cart_items.php" onmouseover="Your cart">
+          <img src="assets/logo/cart.png" alt="Mountain View" style="width:60px;height:60px;" >
+        </a>
+      </p>
+      <?php } ?>
     </div>
 </body>
 </html>

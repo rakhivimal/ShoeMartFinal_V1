@@ -12,7 +12,7 @@
       <?php
 
       include_once("manage_cart.php");
-    
+
       if(!empty($_GET["action"])) {
         switch($_GET["action"]) {
           case "remove":
@@ -54,7 +54,8 @@
             }
             echo "</table>";
             echo " <label_total> The total price :".  $totalPrice. " </label_total><br>";
-            echo "<span class='button_style'><a href='confirmation.php'>Proceed To Checkout</a></span>";
+
+            echo "<span ><a href='confirmation.php'><img src='assets/logo/checkout.png' alt='Mountain View' style='width:160px;height:40px;margin-left: 470px;'></a></span>";
 
           } else {
             ?>
