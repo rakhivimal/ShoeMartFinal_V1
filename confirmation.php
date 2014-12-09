@@ -62,6 +62,36 @@
 
 			include_once("manage_cart.php");
 			include_once("connect.php");
+			include_once("send_mail.php");
+			
+			$cid = '';
+			$fName = '';
+			$lName = '';
+			$email = '';
+			$address = '';
+			$state = '';
+			$zip = '';
+			$phone = '';
+
+			if(isset($_SESSION['id'])){
+				$query = "select * from CUSTOMER where cid='".$_SESSION['id']."'";
+				echo 	$query;
+				$result = mysqli_query($conn, $query);
+				if (!$result) {
+					die(mysqli_error($conn));
+				} else {
+					while ($row = mysqli_fetch_array($result)) {
+						$cid = $row[0];
+						$fName = $row[1];
+						$lName = $row[2];
+						$email = $row[4];
+						$address = $row[5];
+						$state = $row[6];
+						$zip = $row[7];
+						$phone = $row[8];
+					}
+				}
+			}
 
 			if(!empty($_GET["action"])) {
 				switch($_GET["action"]) {
@@ -109,53 +139,53 @@
 							<form method="post" action="confirmation.php" ENCTYPE="multipart/form-data">
 
 <!-- your regular form follows -->
-<table width=518 border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-  <tr bgcolor="#E5E5E5"> 
+<table width=518 border="0" cellpadding="0" cellspacing="0">
+  <tr bgcolor="#E5E5E5">
     <td height="22" colspan="3" align="left" valign="middle"><strong>&nbsp;Billing Information (required)</strong></td>
   </tr>
-  <tr> 
+  <tr>
     <td height="22" width="180" align="right" valign="middle">First Name:</td>
-    <td colspan="2" align="left"><input name="firstname" type="text" size="50"></td>
+    <td colspan="2" align="left"><input name="firstname" type="text" size="50" value='<?=$fName?>'></td>
   </tr>
-  <tr> 
+  <tr>
     <td height="22" align="right" valign="middle">Last Name:</td>
-    <td colspan="2" align="left"><input name="lastname" type="text" size="50"></td>
+    <td colspan="2" align="left"><input name="lastname" type="text" size="50" value='<?=$lName?>' ></td>
   </tr>
-  <tr> 
+  <tr>
     <td height="22" align="right" valign="middle">Street Address:</td>
-    <td colspan="2" align="left"><input name="address" type="text" value="" size="50"></td>
-  </tr> 
-  <tr> 
+    <td colspan="2" align="left"><input name="address" type="text"  size="50" value='<?=$fName?>' ></td>
+  </tr>
+  <tr>
     <td height="22" align="right" valign="middle">City:</td>
-    <td colspan="2" align="left"><input name="city" type="text" value="" size="50"></td>
+    <td colspan="2" align="left"><input name="city" type="text" size="50" value='<?=$fName?>' ></td>
   </tr>
-  <tr> 
+  <tr>
     <td height="22" align="right" valign="middle">State/Province:</td>
-    <td colspan="2" align="left"><input name="state" type="text" value="" size="50"></td>
+    <td colspan="2" align="left"><input name="state" type="text" size="50" value='<?=$state?>' ></td>
   </tr>
-  <tr> 
+  <tr>
     <td height="22" align="right" valign="middle">Zip/Postal Code:</td>
-    <td colspan="2" align="left"><input name="zip" type="text" value="" size="50"></td>
+    <td colspan="2" align="left"><input name="zip" type="text" size="50" value='<?=$zip?>' ></td>
   </tr>
-  <tr> 
+  <tr>
     <td height="22" align="right" valign="middle">Country:</td>
-    <td colspan="2" align="left"><input name="country" type="text" value="" size="50"></td>
+    <td colspan="2" align="left"><input name="country" type="text"  size="50" value='<?=$fName?>' ></td>
   </tr>
-  <tr> 
+  <tr>
     <td height="22" align="right" valign="middle">Phone:</td>
-    <td colspan="2" align="left"><input name="phone" type="text" value="" size="50"></td>
+    <td colspan="2" align="left"><input name="phone" type="text"  size="50" value='<?=$phone?>' ></td>
   </tr>
-  <tr> 
+  <tr>
     <td height="22" colspan="3" align="left" valign="middle">&nbsp;</td>
   </tr>
-  <tr bgcolor="#E5E5E5"> 
+  <tr bgcolor="#E5E5E5">
     <td height="22" colspan="3" align="left" valign="middle"><strong>&nbsp;Credit Card (required)</strong></td>
   </tr>
-  <tr> 
+  <tr>
     <td height="22" align="right" valign="middle">Credit Card Number:</td>
     <td colspan="2" align="left"><input name="CCNo" type="text" value="" size="19" maxlength="40"></td>
   </tr>
-  <tr> 
+  <tr>
     <td height="22" align="right" valign="middle">Expiry Date:</td>
     <td colspan="2" align="left">
       <SELECT NAME="CCExpiresMonth">
@@ -190,15 +220,15 @@
       </SELECT>
     </td>
   </tr>
-  <tr> 
+  <tr>
     <td height="22" colspan="3" align="left" valign="middle">&nbsp;</td>
   </tr>
-  <tr bgcolor="#E5E5E5"> 
+  <tr bgcolor="#E5E5E5">
     <td height="22" colspan="3" align="left" valign="middle"><strong>&nbsp;Additional Information</strong></td>
   </tr>
-  <tr> 
+  <tr>
     <td height="22" align="right" valign="middle">Contact Email:</td>
-    <td colspan="2" align="left"><input name="contactemail" type="text" value="" size="50"></td>
+    <td colspan="2" align="left"><input name="contactemail" type="text" value='<?=$email?>' size="50"></td>
   </tr>
 </table>
 <p><input name="submit" type="submit" value="PURCHASE"></p>
@@ -208,21 +238,48 @@
 	</div>
 	<?php
 	if(isset($_POST['submit'])){
-$fn=$_POST["firstname"];
- if ((empty($_POST["firstname"]))||(empty($_POST["lastname"]))||(empty($_POST["address"]))||(empty($_POST["city"]))||(empty($_POST["state"]))||(empty($_POST["zip"]))||(empty($_POST["country"]))){
-    echo "<script>alert('Few fields are empty please check')</script>";
-	//echo "<script>setTimeout(\"location.href = 'http://localhost/ecommerce_project/admin_add.html';\",100);</script>";
-	exit();
-}
- elseif((empty($_POST["CCNo"]))||(empty($_POST["CCExpiresMonth"]))||(empty($_POST["CCExpiresYear"]))){
-  echo "<script>alert('Credit card fields are empty please check')</script>";
-   exit();
-}
-if (!(empty($_POST["firstname"]))&&!(empty($_POST["lastname"]))&&!(empty($_POST["address"]))&&!(empty($_POST["city"]))&&!(empty($_POST["state"]))||!(empty($_POST["zip"]))&&!(empty($_POST["country"]))&& !(empty($_POST["CCNo"]))&&!(empty($_POST["CCExpiresMonth"]))&&!(empty($_POST["CCExpiresYear"]))){
-//smtpmailer('$_POST["contactemail"]', 'vasavimadadi@mail.com', 'yourName', 'test mail message', 'Hello World!');
- echo "<script>alert('success')</script>";
-}
-}
+		$fn=$_POST["firstname"];
+
+	 if ((empty($_POST["firstname"]))||(empty($_POST["lastname"]))||(empty($_POST["address"]))||(empty($_POST["city"]))||(empty($_POST["state"]))||(empty($_POST["zip"]))||(empty($_POST["country"]))){
+		    echo "<script>alert('Few fields are empty please check')</script>";
+			exit();
+		}
+		 elseif((empty($_POST["CCNo"]))||(empty($_POST["CCExpiresMonth"]))||(empty($_POST["CCExpiresYear"]))){
+		  echo "<script>alert('Credit card fields are empty please check')</script>";
+		   exit();
+		}
+		if (!(empty($_POST["firstname"]))&&!(empty($_POST["lastname"]))&&!(empty($_POST["address"]))&&!(empty($_POST["city"]))&&!(empty($_POST["state"]))||!(empty($_POST["zip"]))&&!(empty($_POST["country"]))&& !(empty($_POST["CCNo"]))&&!(empty($_POST["CCExpiresMonth"]))&&!(empty($_POST["CCExpiresYear"]))){
+		 	echo "<script>alert('success')</script>";
+		}
+
+		echo 	"<br><br><br><br><br><br><br><br><br>";
+
+
+		$message = Swift_Message::newInstance('Shipping Information')
+		->setFrom(array('shoemart.team6@gmail.com'))
+		->setTo(array($email))
+		->setBody("Thank you for your purchase at shoemart. Your shipping id is HGGUBMJ56767JHJ");
+
+		$result = $mailer->send($message);
+
+		if(!empty($_SESSION["cart_item"])) {
+			foreach($_SESSION["cart_item"] as $k => $v) {
+				if(!empty($_SESSION["cart_item"][$k]["model_name"])) {
+					$product_id=$_SESSION["cart_item"][$k]["model_id"];
+					$quantity=$_SESSION["cart_item"][$k]["quantity"];
+					$total=$_SESSION["cart_item"][$k]["total"];
+					$uid=$_SESSION['id'] ;
+					$sql = "INSERT INTO purchase_history(product_id, user_id, quantity, price) VALUES ($product_id,'".$uid."',$quantity,$total)";
+					$result = mysqli_query($conn ,$sql) or die(mysql_error());
+					//echo 	$sql ;
+					if ($result==1) { // Error handling
+					}	else{
+						echo "Failed to add information into history table.";
+					}
+				}
+			}
+		}
+	}
 ?>
 	<div class="footer">
 	Copyright © Team-7

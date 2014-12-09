@@ -62,3 +62,10 @@ div.Center-Nav{
   padding:2px 10px;
   font-size:0.9em;
 }
+.links {
+color:black;
+text-align:center;
+padding:40px;
+font-size:25px;
+margin :0;
+}

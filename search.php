@@ -2,10 +2,12 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="shoe_mart.css">
+  <link href="styles.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
 
   <?php
+
   if(!isset($_SESSION)){
     session_start();
   }
@@ -57,6 +59,10 @@
 
     if (isset($_GET['sort_by'])){
       $_SESSION["sort_by"] = $_GET["sort_by"];
+    }
+
+    if (isset($_POST['sort_by'])){
+      $_SESSION["sort_by"] = $_POST["sort_by"];
     }
 
     if (isset($_GET['type'])){
@@ -115,12 +121,8 @@
   ?>
 
   <div class= "main">
-    <div class="title">
-      <h1>Shoe@mart</h1>
-    </div>
-    <div class="left-Nav">
-      <?php include('left_nav.php'); ?>
-    </div>
+   
+    
 
     <div class ="Center-Nav" style="text-align: center;width:1250px">
       <p>
@@ -132,6 +134,17 @@
       <?php
       if (isset($result)) {
         ?>
+        <form action="search.php?search=Search" method="post" align ="left">
+          <b>Sort By </b>  <select onchange="this.form.submit();" name="sort_by">
+              <option value="model_id">--Select--</option>
+              <option value="size">Size</option>
+              <option value="brand_name">Brand</option>
+              <option value="model_price">Price</option>
+              <option value="type">Type</option>
+          </select>
+          <br><br>
+        </form>
+
         <table class ="result-table">
           <?php
           $columnMax=5;
@@ -154,8 +167,7 @@
                   echo " <input type='submit' value='Add to cart'/>";
                   echo "</form>";
 
-                  echo " <form action='review.php' method='post'>";
-				  echo " <input type='hidden' name='reviews' value='".$row[0]."'/> ";
+                  echo " <form action='review.php?reviews=".$row[0]."' method='post'>";
                     echo " <input type='submit' name ='review_submit' value='Reviews'>";
                     echo " </form>";
                   $columnCount = $columnCount - 1;

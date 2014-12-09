@@ -1,0 +1,103 @@
+
+DROP TABLE review;
+
+DROP TABLE purchase_history;
+
+DROP TABLE product;
+
+DROP TABLE customer;
+
+CREATE TABLE IF NOT EXISTS product (
+  model_id int(10) NOT NULL AUTO_INCREMENT,
+  model_name varchar(25) NOT NULL,
+  model_price int(20) NOT NULL,
+  category varchar(20) NOT NULL,
+  type varchar(20) DEFAULT NULL,
+  quantity int(10) NOT NULL,
+  size double NOT NULL,
+  image text,
+  brand_name varchar(25) NOT NULL,
+  PRIMARY KEY (model_id)
+) ;
+
+CREATE TABLE IF NOT EXISTS CUSTOMER(
+cid  varchar(8)  PRIMARY KEY,
+fname varchar(15),
+lname varchar(15),
+gender varchar(7),
+email varchar(50),
+password varchar(10),
+address  varchar(100),
+city varchar(20),
+state varchar(5),
+zipcode  varchar(7),
+phonenumber bigint(10));
+
+INSERT INTO product (model_name, model_price, category, type, quantity, size, image, brand_name)
+VALUES
+('M Casual', 26.0, 'men', 'casual', 10, 8.5, 'men_shoe_img_1.jpg', 'Nike'),
+('M Running', 36.0, 'men', 'running', 10, 7.5, 'men_shoe_img_2.jpg', 'Addidas'),
+('M Formal', 55.0, 'men', 'formal', 10, 9.5, 'men_shoe_img_3.jpg', 'Puma'),
+('M Casual', 16.0, 'men', 'casual', 10, 9, 'men_shoe_img_4.jpg', 'New-balance'),
+('M Formal', 26.0, 'men', 'formal', 10, 8.5, 'men_shoe_img_5.jpg', 'Magnum'),
+('M Casual', 56.0, 'men', 'casual', 10, 7.5, 'men_shoe_img_6.jpg', 'Addidas'),
+('M Sports', 16.0, 'men', 'sports', 10, 8.5, 'men_shoe_img_7.jpg', 'Ralph-Lauren'),
+('M Casual', 77.0, 'men', 'casual', 10, 10.5, 'men_shoe_img_8.jpg', 'Sporto'),
+('M Running', 66.0, 'men', 'running', 10, 8.5, 'men_shoe_img_9.jpg', 'Nike'),
+('M Sports', 22.0, 'men', 'sports', 10, 11.5, 'men_shoe_img_10.jpg', 'Puma'),
+('M Casual', 24.0, 'men', 'casual', 10, 8.5, 'men_shoe_img_11.jpg', 'Addidas'),
+('M Sports', 32.0, 'men', 'sports', 10, 7.5, 'men_shoe_img_12.jpg', 'Magnum'),
+('M Casual', 78.0, 'men', 'running', 10, 9, 'men_shoe_img_13.jpg', 'Sporto'),
+('W Casual', 16.0, 'women', 'casual', 10, 5.5, 'ladies_shoe_img_1.jpg', 'Puma'),
+('W Running', 26.0, 'women', 'running', 8, 6.5, 'ladies_shoe_img_2.jpg', 'New-balance'),
+('W Formal', 52.0, 'women', 'formal', 110, 7.5, 'ladies_shoe_img_3.jpg', 'Ralph-lauren'),
+('W Casual', 17.0, 'women', 'casual', 14, 7, 'ladies_shoe_img_4.jpg', 'Sporto'),
+('W Formal', 23.0, 'women', 'formal', 34, 8.5, 'ladies_shoe_img_5.jpg', 'Puma'),
+('W Casual', 50.0, 'women', 'casual', 66, 5.5, 'ladies_shoe_img_6.jpg', 'Nike'),
+('W Sports', 13.0, 'women', 'sports', 24, 6.5, 'ladies_shoe_img_7.jpg', 'New-balance'),
+('W Casual', 70.0, 'women', 'casual', 56, 9.5, 'ladies_shoe_img_8.jpg', 'Magnum'),
+('W Running', 76.0, 'women', 'running', 10, 5.5, 'ladies_shoe_img_9.jpg', 'Nike'),
+('W Sports', 12.0, 'women', 'sports', 70, 7.5, 'ladies_shoe_img_10.jpg', 'Puma'),
+('W Casual', 24.0, 'women', 'casual', 40, 6.5, 'ladies_shoe_img_11.jpg', 'Addidas'),
+('W Sports', 12.0, 'women', 'sports', 50, 7.5, 'ladies_shoe_img_12.jpg', 'Ralph-lauren'),
+('W Casual', 48.0, 'women', 'running',30, 8, 'ladies_shoe_img_13.jpg', 'Magnum'),
+('C Casual', 16.0, 'children', 'casual', 10, 2.5, 'children_shoe_1.jpg', 'Sporto'),
+('C Running', 16.0, 'children', 'running', 8, 3.5, 'children_shoe_2.jpg', 'Nike'),
+('C Formal', 12.0, 'children', 'casual', 110, 4.5, 'children_shoe_3.jpg', 'Puma'),
+('C Casual', 19.0, 'children', 'casual', 14, 6, 'children_shoe_4.jpg', 'Addidas'),
+('C Formal', 24.0, 'children', 'formal', 34, 4.5, 'children_shoe_5.jpg', 'Magnum'),
+('C Casual', 12.0, 'children', 'casual', 66, 2.5, 'children_shoe_6.jpg', 'Sporto'),
+('C Sports', 24.0, 'children', 'sports', 24, 3.5, 'children_shoe_7.jpg', 'Ralph-lauren'),
+('C Casual', 54.0, 'children', 'casual', 56, 2.5, 'children_shoe_8.jpg', 'New-balance'),
+('C Running', 32.0, 'children', 'running', 10, 3, 'children_shoe_9.jpg', 'New-balance'),
+('C Sports', 12.0, 'children', 'sports', 70, 2, 'children_shoe_10.jpg', 'Nike'),
+('C Casual', 14.0, 'children', 'casual', 40, 3, 'children_shoe_11.jpg', 'Addidas'),
+('C Sports', 22.0, 'children', 'sports', 50, 3, 'children_shoe_12.jpg', 'Nike'),
+('C Casual', 38.0, 'children', 'running',30, 4, 'children_shoe_13.jpg', 'New-balance');
+
+
+create table review (
+review_id              int(10)  not null AUTO_INCREMENT PRIMARY KEY,
+model_id              int(10) not null,
+review           varchar(100) not null,
+rating           int(4) not null,
+FOREIGN KEY (model_id) REFERENCES product(model_id)
+ );
+
+CREATE TABLE IF NOT EXISTS purchase_history (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  product_id int(11) NOT NULL,
+  user_id varchar(100) NOT NULL,
+  quantity int(11) NOT NULL,
+  price int(11) NOT NULL,
+  date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY fk_product_id (product_id)
+) ;
+
+INSERT INTO purchase_history (`product_id`, `user_id`, `quantity`, `price`) VALUES
+(1, 1, 12, 12),
+(1, 2, 12, 12);
+
+ALTER TABLE purchase_history
+  ADD CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES product (model_id);

@@ -43,10 +43,11 @@ $sql2= "select * from product natural join review where model_id='$model_id'";
 <?php
 }
 echo "</table>" ;
- }
- else{
+if($row==0){
  echo"This product does not have any reviews";
  }
+ }
+ 
 mysqli_close($conn);
 ?>
 </form>
