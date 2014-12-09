@@ -1,7 +1,7 @@
 var myImage = document.getElementById("image1");
 var nextImage = document.getElementById("image2");
-var imageArray = ["sale1.jpg","sale2.jpg","sale3.jpg","sale4.jpg"];
-var nextimageArray = ["sale5.jpg","sale6.jpg","sale7.jpg","sale8.jpg"];
+var imageArray = ["assets/home/sale1.jpg","assets/home/sale2.jpg","assets/home/sale3.jpg","assets/home/sale4.jpg"];
+var nextimageArray = ["assets/home/sale5.jpg","assets/home/sale6.jpg","assets/home/sale7.jpg","assets/home/sale8.jpg"];
 var imageIndex=0;
 function changeImage(){
 myImage.setAttribute("src",imageArray[imageIndex]);
@@ -19,4 +19,3 @@ imageIndex=0;
 }
 setInterval(changeImage,4000);
 setInterval(changenextImage,5000);
-

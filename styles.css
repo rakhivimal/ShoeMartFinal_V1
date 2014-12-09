@@ -11,7 +11,7 @@ img{
 }
 
 a{
-    color: #ffffff;
+    color: #0000CC;
     font-weight: bold;
     text-decoration: none;
 }
@@ -23,7 +23,7 @@ a:hover {
 
 h1{
 	font: 18px Arial, Helvetica, sans-serif;
-	color: #ffffff;
+	color: black;
 	font-weight: normal;
 	text-align: center;
 	padding: 0px 25px 10px 25px;
@@ -33,7 +33,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     line-height: 18px;
-    color: #ffffff;
+    color: black;
     background: #000000 url(images/bg.jpg) no-repeat top center fixed;
 }
 
@@ -58,7 +58,7 @@ body {
     list-style: none;
 	padding: 0px 0px 0px 0px;
 	margin: 0 auto;
-	width: 771px;
+	width: 1080px;
 }
 
 #menu ul li{
@@ -67,6 +67,7 @@ body {
 
 #menu ul li a{
 	font: 20px Arial, Helvetica, sans-serif;
+    color: black;
     color: #ffffff;
     font-weight: normal;
     text-decoration: none;
@@ -208,7 +209,7 @@ top:800px;
 }
 
 #column2_box2 ul li a:hover{
-	color: #ffffff;
+	color: black;
 }
 
 .row-1 .metam1 {width:327px; margin-right:11px;}
@@ -522,7 +523,7 @@ h5 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 22px;
     font-weight: normal;
-    color: #ffffff;
+    color: #0000CC;
     text-align: left;
     padding-top: 5px;
     padding-bottom: 10px;
@@ -607,7 +608,7 @@ h5 {
 #contact-submit{
     width: 150px;
     height: 40px;
-    color: #ffffff;
+    color: #0000CC;
     background: url(images/contact_but.png);
     background-repeat:no-repeat;
     background-position:left bottom;
@@ -620,7 +621,7 @@ h5 {
 #contact-clear{
     width: 150px;
     height: 40px;
-    color: #ffffff;
+    color: #0000CC;
     background: url(images/contact_but.png);
     background-repeat:no-repeat;
     background-position:left bottom;
@@ -702,7 +703,7 @@ h5 {
 
 .gallery h3 {
 	padding: 15px 0px 5px 0px;
-	color: #ffffff;
+	color: #0000CC;
 	font-size: 16px;
 	text-align: left;
 	font-weight: normal;
@@ -716,7 +717,7 @@ h5 {
 
 .gallery h1 {
 	padding: 5px 0px 15px 8px;
-	color: #ffffff;
+	color: #0000CC;
 	font-size: 16px;
 	background: url(images/h1_gallery.jpg) left top no-repeat;}
 

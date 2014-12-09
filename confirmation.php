@@ -13,6 +13,7 @@
 			<fieldset >
 			<?php
 			include_once("send_mail.php");
+			$trackingNum=getRandomString(15);
 
 			$cid = '';
 			$fName = '';
@@ -33,6 +34,7 @@
 						$cid = $row[0];
 						$fName = $row[1];
 						$lName = $row[2];
+						$_SESSION['user']=$fName." ".$lName;
 						$email = $row[4];
 						$address = $row[5];
 						$state = $row[6];
@@ -207,7 +209,7 @@
 		$message = Swift_Message::newInstance('Shipping Information')
 		->setFrom(array('shoemart.team6@gmail.com'))
 		->setTo(array($email))
-		->setBody("Thank you for your purchase at shoemart. Your shipping id is HGGUBMJ56767JHJ");
+		->setBody("Thank you for your purchase at shoemart. Your shipping id is $trackingNum ");
 
 		$result = $mailer->send($message);
 
@@ -218,7 +220,7 @@
 					$quantity=$_SESSION["cart_item"][$k]["quantity"];
 					$total=$_SESSION["cart_item"][$k]["total"];
 					$uid=$_SESSION['id'] ;
-					$sql = "INSERT INTO purchase_history(product_id, user_id, quantity, price) VALUES ($product_id,'".$uid."',$quantity,$total)";
+					$sql = "INSERT INTO purchase_history(product_id, user_id, quantity, price,tracking_id) VALUES ($product_id,'".$uid."',$quantity,$total,'".$trackingNum."')";
 					$result = mysqli_query($conn ,$sql) or die(mysql_error());
 					//echo 	$sql ;
 					if ($result==1) { // Error handling
@@ -229,6 +231,23 @@
 			}
 		}
 	}
+
+
+	function getRandomString($length)
+	{
+
+		$validCharacters = "abcdefghjkmnopqrstuvwxyzABCDEFGHJKMNOPQRSTUVWXYZ123456789_@";
+		$validCharNumber = strlen($validCharacters);
+		$result = "";
+
+		for ($i = 0; $i < $length; $i++)
+		{
+			$index = mt_rand(0, $validCharNumber - 1);
+			$result .= $validCharacters[$index];
+		}
+		return $result;
+	}
+
 ?>
 <!-- ============================ Container ============================-->
 </div>

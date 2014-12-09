@@ -11,12 +11,10 @@
             <br><br><br>
             <!-- Search button -->
             <form action="search.php" method="GET" >
-               <input type="text" name="search_text">
-               <input type="submit" value="Search" name ="search"><br><br>
-               <!-- Radio buttons -->
-               <input type="radio" name="value" value="Brand">Brand
-               <input type="radio" name="value" value="Category">Category
-            </form></div>
+
+              <input type="submit" value="Start Shopping" name ="search" style="width:150px;height:40px;"><br><br>
+
+            </form>
 				<!--<div id="top_padding"></div>-->
 			  <div id="images">
 

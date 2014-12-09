@@ -30,11 +30,19 @@
         if(!empty($_SESSION["cart_item"])) {
       ?>
       <p>
-        <b><a href="<?=$project_root?>/cart_items.php" onmouseover="Your cart">
+        <a href="<?=$project_root?>/cart_items.php" onmouseover="Your cart">
           <img src="assets/logo/cart.png" alt="Mountain View" style="width:60px;height:60px;" >
         </a>
+        <?php
+
+        if(isset($_SESSION['user'])){
+          echo "Welcome ".$_SESSION['user'];
+        }
+        ?>
+
       </p>
-      <?php } ?>
+      <?php }
+      ?>
     </div>
 </body>
 </html>

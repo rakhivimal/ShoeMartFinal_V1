@@ -20,11 +20,9 @@
 						}
 					}
 				} else {
-					echo "Inside Else ";
 					$_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
 				}
 			} else {
-				echo "Initial add ";
 				$_SESSION["cart_item"] = $itemArray;
 			}
 

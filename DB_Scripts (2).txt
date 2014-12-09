@@ -91,13 +91,12 @@ CREATE TABLE IF NOT EXISTS purchase_history (
   quantity int(11) NOT NULL,
   price int(11) NOT NULL,
   date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  tracking_id varchar(100) NOT NULL,
   PRIMARY KEY (id),
   KEY fk_product_id (product_id)
 ) ;
 
-INSERT INTO purchase_history (`product_id`, `user_id`, `quantity`, `price`) VALUES
-(1, 1, 12, 12),
-(1, 2, 12, 12);
+
 
 ALTER TABLE purchase_history
   ADD CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES product (model_id);
